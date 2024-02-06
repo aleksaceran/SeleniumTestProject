@@ -20,6 +20,8 @@ public class CartPage extends BasePage{
     String CheckoutPageTitle1 = "Checkout: Your Information";
     String CheckoutPageTitle2 = "Checkout: Overview";
     String CheckoutPageTitle3 = "Checkout: Complete!";
+
+    By itemPriceBy = By.xpath("//div[@class='inventory_item_price']");
     
 
     public CartPage verifyCartNavigation(String expectedPageTitle){
@@ -62,5 +64,16 @@ public class CartPage extends BasePage{
 
 
     }
+    public CartPage verifyItemPrice(double expectedPrice){
+        String priceText = readText(itemPriceBy).substring(1);
+        double actualPrice = convertTextToNumber(priceText);
+        verifyPrice(expectedPrice,actualPrice);
+
+
+
+        return this;
+    }
+
+
 
 }

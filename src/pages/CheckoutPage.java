@@ -15,7 +15,12 @@ public class CheckoutPage extends BasePage{
     By finishOrderButton = By.xpath("//*[@id=\"finish\"]");
     By backToHomeButton = By.xpath("//*[@id=\"back-to-products\"]");
     By pageTitleBy = By.xpath("//span[@class='title']");
-    
+    By itemPriceBy = By.xpath("//div[@class='inventory_item_price']");
+
+    By itemTotalPrice = By.xpath("//div[@class='summary_subtotal_label']");
+    By taxPrice = By.xpath("//div[@class='summary_tax_label']");
+    By totalPrice = By.xpath("//div[@class='summary_info_label summary_total_label']");
+
 //click na firstName element, i send keys sa enter text metodom
 //click na lastName element, i send keys sa enter text metodom
 //click na zipCode element, i send keys sa enter text metodom
@@ -47,6 +52,26 @@ public class CheckoutPage extends BasePage{
         verifyTextIsTheSame(expectedPageTitle, actualPageTitle);
         return this;
     }
+    public CheckoutPage verifyItemPrice(){
+        String priceText = readText(itemTotalPrice).substring(13);
+        double actualPrice = convertTextToNumber(priceText);
+        String taxText = readText(taxPrice).substring(6);
+        double actualTax = convertTextToNumber(taxText);
+        String totalText = readText(totalPrice).substring(8);
+        double totalCheckoutPrice = convertTextToNumber(totalText);
+
+        verifyPrice(actualPrice + actualTax, totalCheckoutPrice);
+
+
+        return this;
+    }
+    
+
+
+
+
+
+
 
     }
 

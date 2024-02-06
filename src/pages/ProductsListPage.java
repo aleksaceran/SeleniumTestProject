@@ -69,7 +69,10 @@ public class ProductsListPage extends BasePage{
         verifyTextIsTheSame(expectedPageTitle, actualPageTitle);
         return this;
     }
-    
+    public ProductsListPage navigateToProductDetailsPageRandom(){
+        clickOnRandomElementFromList(itemNamesBy);
+        return this;
+    }
 
 
 
